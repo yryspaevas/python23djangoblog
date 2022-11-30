@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import post_list, create_post, update_post, delete_post
+from main.views import post_list, create_post, update_post, delete_post, filter_by_user, search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,6 @@ urlpatterns = [
     path('post-create/', create_post),
     path('post-update/<int:id>/', update_post),
     path('post-delete/<int:id>/', delete_post),
+    path('post-filter/<int:u_id>', filter_by_user),
+    path('post-search/', search),
 ]
