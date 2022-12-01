@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+
 from main.views import post_list, create_post, update_post, delete_post, filter_by_user, search
 from reviews.views import CommentViewSet
 
@@ -24,8 +25,24 @@ from reviews.views import CommentViewSet
 router = DefaultRouter()
 router.register('comments', CommentViewSet)
 
+
+"""==================================SWAGGER DOCS=================================="""
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+
+swagger_view = get_schema_view(
+    openapi.Info(
+        title = "BLOG API", #название проекта
+        default_version="v1",
+        description="blog api"
+    ),
+    public= True
+)
+"""================================================================================"""
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('docs/', swagger_view.with_ui('swagger', cache_timeout=0)),
     path('posts/', post_list),
     path('post-create/', create_post),
     path('post-update/<int:id>/', update_post),
