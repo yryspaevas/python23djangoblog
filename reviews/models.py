@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from main.models import Post
 # Create your models here.
+
 User = get_user_model()
 
 class Comment(models.Model):

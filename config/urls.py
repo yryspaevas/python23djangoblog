@@ -14,9 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from main.views import post_list, create_post, update_post, delete_post, filter_by_user, search
+from reviews.views import CommentViewSet
+
+
+router = DefaultRouter()
+router.register('comments', CommentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +32,5 @@ urlpatterns = [
     path('post-delete/<int:id>/', delete_post),
     path('post-filter/<int:u_id>', filter_by_user),
     path('post-search/', search),
+    path('', include(router.urls)),
 ]
