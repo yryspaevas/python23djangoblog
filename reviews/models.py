@@ -12,3 +12,13 @@ class Comment(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class LikePost(models.Model):
+    author = models.ForeignKey(User, related_name='post_likes', on_delete= models.CASCADE)
+    post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE)
+
+class LikeComment(models.Model):
+    author = models.ForeignKey(User, related_name='comment_likes', on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, related_name='likes', on_delete=models.CASCADE)
+    

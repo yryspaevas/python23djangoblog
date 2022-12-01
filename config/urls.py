@@ -18,7 +18,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 
-from main.views import post_list, create_post, update_post, delete_post, filter_by_user, search
+from main.views import post_list, create_post, update_post, delete_post, filter_by_user, search, toggle_like
 from reviews.views import CommentViewSet
 
 
@@ -49,5 +49,6 @@ urlpatterns = [
     path('post-delete/<int:id>/', delete_post),
     path('post-filter/<int:u_id>', filter_by_user),
     path('post-search/', search),
+    path('post-like/', toggle_like),
     path('', include(router.urls)),
 ]
