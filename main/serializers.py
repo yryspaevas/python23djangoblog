@@ -23,6 +23,6 @@ class PostSerializers(ModelSerializer):
         
         # comments = instance.comments.all()
         
-        rep['comments'] = CommentSerializer(instance.comments.all(), many=True).data
-        rep['comments'] = instance.comments.count()
+        rep['comments'] = CommentSerializer(instance.comments.all(), many=True).data #комментарий и информация о нем
+        rep['comments'] = instance.comments.count() # количество комментариев к каждому посту
         return rep 
